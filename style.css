@@ -1,0 +1,58 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+}
+
+#show-score {
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    position: relative;
+    top: 180px;
+    left: 850px;
+    background-color: rgb(229, 243, 255);
+    text-align: center;
+    font-size: 30px;
+}
+
+.game-con {
+    width: 500px;
+    height: 500px;
+    background-color: rgb(200, 230, 255);
+    text-align: center;
+    margin-top: 200px;
+    margin-left: 700px;
+    border: 1px solid black;
+}
+
+#question-con {
+    background-color: rgb(176, 209, 237);
+    width: 500px;
+    height: 420px;
+    font-size: 60px;
+}
+
+#sBtn {
+    width: 130px;
+    height: 50px;
+    padding: 10px;
+    background-color: rgb(255, 248, 175);
+    margin-top: 15px;
+}
+
+#tBtn {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    background-color: rgb(190, 250, 190);
+    margin-top: 15px;
+}
+
+#fBtn {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    background-color: rgb(255, 220, 206);
+}
