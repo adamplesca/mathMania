@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Mania!</title>
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <link rel="icon" href="/images/favicon.png">
 </head>
 <body>
     <div id="whole-container">
-        <div class="top-labels" id="show-score">Score: </div>
-        <div class="top-labels" id="lives-score">Lives Left: </div>
+        <div class="top-labels-container">
+            <div class="top-labels" id="show-score">Score: </div>
+            <div class="top-labels" id="lives-score">Lives Left: </div>
+            <!-- <div class="top-labels" id="timer">Time Left: </div> ADD AFTER EVERYTHING MAYBE--> 
+        </div>
+
         <div class="game-con">
             <div id="question-con"></div>
+
             <div class="button-con">
-                <button class="bottom-btns" id="sBtn" onclick="">Start Game</button>
+                <button class="bottom-btns" id="sBtn" onclick="startGame()">Start Game</button>
                 <button class="bottom-btns" id="cBtn" onclick="">Correct</button>
                 <button class="bottom-btns" id="fBtn" onclick="">False</button>
             </div>

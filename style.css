@@ -18,15 +18,22 @@
 }
 
 /* top labels container */
-.top-labels {
+.top-labels-container {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    max-width: 300px;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.top-labels {
+    width: 200px;
     height: 50px;
     border: 1px solid black;
     text-align: center;
     font-size: 1.5rem;
-    margin: 10px;
     background-color: rgb(229, 243, 255);
+    margin: 0 10px;
 }
 
 /* game container */
@@ -97,7 +104,6 @@
 #fBtn:hover {
     background-color: rgb(255, 210, 190);
 }
-
 
 /* responsive webpage */
 @media (max-width: 768px) {
