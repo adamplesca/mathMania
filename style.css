@@ -1,58 +1,133 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Trebuchet MS';
-    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
-#show-score {
-    width: 200px;
+/* container for the entire page */
+#whole-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f0f8ff;
+}
+
+/* top labels container */
+.top-labels {
+    width: 100%;
+    max-width: 300px;
     height: 50px;
     border: 1px solid black;
-    position: relative;
-    top: 180px;
-    left: 850px;
-    background-color: rgb(229, 243, 255);
     text-align: center;
-    font-size: 30px;
+    font-size: 1.5rem;
+    margin: 10px;
+    background-color: rgb(229, 243, 255);
 }
 
+/* game container */
 .game-con {
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    max-width: 600px;
     background-color: rgb(200, 230, 255);
     text-align: center;
-    margin-top: 200px;
-    margin-left: 700px;
     border: 1px solid black;
+    padding: 20px;
 }
 
+/* question container */
 #question-con {
     background-color: rgb(176, 209, 237);
-    width: 500px;
-    height: 420px;
-    font-size: 60px;
+    width: 100%;
+    height: 300px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#sBtn {
+/* buttons container & buttons */
+.button-con {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom-btns {
     width: 130px;
     height: 50px;
     padding: 10px;
-    background-color: rgb(255, 248, 175);
-    margin-top: 15px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#tBtn {
-    width: 100px;
-    height: 50px;
-    padding: 10px;
+#sBtn {
+    background-color: rgb(255, 248, 175);
+}
+
+#cBtn {
     background-color: rgb(190, 250, 190);
-    margin-top: 15px;
 }
 
 #fBtn {
-    width: 100px;
-    height: 50px;
-    padding: 10px;
     background-color: rgb(255, 220, 206);
+}
+
+/* hover effects */
+.bottom-btns:hover {
+    transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+#sBtn:hover {
+    background-color: rgb(255, 230, 120);
+}
+
+#cBtn:hover {
+    background-color: rgb(170, 240, 170);
+}
+
+#fBtn:hover {
+    background-color: rgb(255, 210, 190);
+}
+
+
+/* responsive webpage */
+@media (max-width: 768px) {
+    .top-labels {
+        font-size: 1.2rem;
+    }
+
+    #question-con {
+        font-size: 1.5rem;
+    }
+
+    .bottom-btns {
+        width: 100px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-labels {
+        font-size: 1rem;
+        width: 90%;
+    }
+
+    #question-con {
+        font-size: 1.2rem;
+        height: 200px;
+    }
+
+    .bottom-btns {
+        width: 80px;
+        font-size: 0.8rem;
+    }
 }
