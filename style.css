@@ -2,7 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Trebuchet MS';
+    font-weight: 200;
 }
 
 /* container for the entire page */
@@ -25,15 +26,16 @@
     max-width: 800px;
     margin-bottom: 20px;
 }
-
 .top-labels {
-    width: 200px;
-    height: 50px;
+    width: auto;
+    height: auto;
     border: 1px solid black;
-    text-align: center;
+    text-align: left;
     font-size: 1.5rem;
     background-color: rgb(229, 243, 255);
-    margin: 0 10px;
+    margin: 10px;
+    padding: 5px;
+    font-weight: bold;
 }
 
 /* game container */
@@ -51,7 +53,7 @@
     background-color: rgb(176, 209, 237);
     width: 100%;
     height: 300px;
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -63,44 +65,38 @@
     display: flex;
     justify-content: space-around;
 }
-
 .bottom-btns {
     width: 130px;
     height: 50px;
     padding: 10px;
     margin: 5px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 #sBtn {
     background-color: rgb(255, 248, 175);
 }
-
 #cBtn {
     background-color: rgb(190, 250, 190);
 }
-
 #fBtn {
     background-color: rgb(255, 220, 206);
 }
 
 /* hover effects */
 .bottom-btns:hover {
-    transform: scale(1.05); /* Slightly enlarges the button */
+    transform: scale(1.05);
+    /* Slightly enlarges the button */
 }
-
 #sBtn:hover {
     background-color: rgb(255, 230, 120);
 }
-
 #cBtn:hover {
     background-color: rgb(170, 240, 170);
 }
-
 #fBtn:hover {
     background-color: rgb(255, 210, 190);
 }
@@ -112,15 +108,14 @@
     }
 
     #question-con {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .bottom-btns {
         width: 100px;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }
-
 @media (max-width: 480px) {
     .top-labels {
         font-size: 1rem;
@@ -128,12 +123,12 @@
     }
 
     #question-con {
-        font-size: 1.2rem;
+        font-size: 1rem;
         height: 200px;
     }
 
     .bottom-btns {
         width: 80px;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 }
