@@ -1,42 +1,53 @@
+//fix bug where is num * 0 = 0 (which is correct) is flagged as false
+//make a difficulty eg easy (randomises nums till a certain num, bigger time frame to complete mental math have only add + sub) etc
+//make timer for game
+//maybe improve gui + add html page of game info or some small add box
+//add jest tests maybe
+
 var lives = 3;
 var score = 0;
+var correctAnswer; 
+var isCorrectAnswer; 
 
 const scoreLabel = document.getElementById("show-score");
 const livesLabel = document.getElementById("lives-score");
-//const timerLabel = document.getElementById("timer");
+const questionContainer = document.getElementById("question-con");
 
 const startBtn = document.getElementById("sBtn");
 const correctBtn = document.getElementById("cBtn");
 const falseBtn = document.getElementById("fBtn");
 
-correctBtn.addEventListener("click", questionValidator);
-falseBtn.addEventListener("click", questionValidator);
+correctBtn.addEventListener("click", function() { questionValidator(true); });
+falseBtn.addEventListener("click", function() { questionValidator(false); });
 
-/* 
-function questionValidator(){
-    if()
-}
- */
-function startGame() {
-    while(lives > 0){
-        if(correctBtn.onclick() == "true" || falseBtn.onclick() == "false"){
-            score ++;
-            questionCreator();
-
-        }else{
-            lives --;
-            questionCreator();
-        }
+function questionValidator(answer) {
+    if (answer === isCorrectAnswer) {
+        score++;
+    } else {
+        lives--;
     }
-
-    if (lives <= 0) { 
-        document.getElementById("question-con").innerHTML = "You mananged to get: " + score + " math questions right!";
-    } 
+    
+    if (lives <= 0) {
+        endGame();
+    } else {
+        updateScoreLives();
+        questionCreator();
+    }
 }
 
+function startGame() {
+    correctBtn.disabled = false;
+    falseBtn.disabled = false;
+    lives = 3;
+    score = 0;
+    updateScoreLives();
+    questionCreator();
+}
+
+//generates 2 random nums + random arithmetic op, also randomises if the sum is true or false
 function questionCreator() {
-    var ranNum1 = getRandomInt(100);
-    var ranNum2 = getRandomInt(100);
+    var ranNum1 = getRandomInt(50);
+    var ranNum2 = getRandomInt(50);
     var symbolGenerator = getRandomInt(4) + 1;
     var correctFalseOdds = getRandomInt(2);
     var falseOffset = getRandomInt(10) + 1;
@@ -59,8 +70,8 @@ function questionCreator() {
             break;
         case 4:
             while (ranNum2 === 0 || ranNum1 % ranNum2 !== 0 || ranNum1 < ranNum2) {
-                ranNum1 = getRandomInt(100);
-                ranNum2 = getRandomInt(100);
+                ranNum1 = getRandomInt(50);
+                ranNum2 = getRandomInt(50);
             }
             equation = `${ranNum1} ÷ ${ranNum2}`;
             outcome = ranNum1 / ranNum2;
@@ -68,123 +79,32 @@ function questionCreator() {
     }
 
     correctAnswer = outcome;
+
     if (correctFalseOdds === 0) {
         outcome += falseOffset * (Math.random() < 0.5 ? 1 : -1);
+        isCorrectAnswer = false; // random generated equation is incorrect
+    } else {
+        isCorrectAnswer = true; // random generated equation is correct
     }
 
-    document.getElementById("question-con").innerHTML = equation + " = " + outcome;
+    questionContainer.innerHTML = equation + " = " + outcome;
 }
 
-function checkAnswer(isCorrect) {
-    if ((isCorrect && correctAnswer == outcome) || (!isCorrect && correctAnswer != outcome)) {
-        score++;
-    } else {
-        lives--;
-    }
-    if (lives <= 0) {
-        endGame();
-    } else {
-        updateScoreLives();
-        questionCreator();
-    }
+function updateScoreLives() {
+    scoreLabel.textContent = `Score: ${score}`;
+    livesLabel.textContent = `Lives: ${lives}`;
 }
 
-//gets random number created for math question (could add more for greater difficulty)
+function endGame() {
+    livesLabel.textContent = `Lives: ${lives}`;
+    questionContainer.innerHTML = "You managed to get: " + score + " math questions right!";
+    correctBtn.disabled = true;
+    falseBtn.disabled = true;
+}
+
+//gets random number created for math question
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-
-//tests
-function test() {
-    var ranNum1 = getRandomInt(100);
-    var ranNum2 = getRandomInt(100);
-
-    var equation = "rn1: " + ranNum1 + " rn2: " + ranNum2;
-
-    document.getElementById("question-con").innerHTML = equation;
-}
-
-/* 
-function startGame() {
-
-    const score = document.getElementById("show-score");
-    const questionDisplay = document.getElementById("question-con");
-    const TRUE = document.getElementById("tBtn");
-    const FALSE = document.getElementById("fBtn");
-
-    const q = [
-        "2 + 2 = 4",
-        "3 + 6 = 8",
-        "10 x 2 = 21",
-        "10 x 12 = 120",
-        "13 x 16 = 168",
-        "21 x 9 = 189",
-        "30 x 15 = 150",
-        "186 + 114 = 300",
-        "18 x 18 = 36",
-        "58 + 27 = 95",
-        "12 x 14 = 168",
-        "1 + 1 = 2",
-        "9 + 10 = 21"
-    ];
-
-    const qA = [
-        "True",
-        "False",
-        "False",
-        "True",
-        "False",
-        "True",
-        "False",
-        "True",
-        "False",
-        "False",
-        "True",
-        "True",
-        "False"
-    ];
-
-    var correctAns = 0;
-    var question = 0;
-
-    TRUE.addEventListener("click", tBtnClick);
-    FALSE.addEventListener("click", fBtnClick);
-
-    questionDisplay.textContent = q[question];
-
-    function tBtnClick() {
-        if (qA[question] == "True") {
-            correctAns++;
-            question++;
-            score.textContent = "Score: " + correctAns;
-            nextQ();
-        } else {
-            question++;
-            nextQ()
-        }
-    }
-
-    function fBtnClick() {
-        if (qA[question] == "False") {
-            correctAns++;
-            question++;
-            score.textContent = "Score: " + correctAns;
-            nextQ();
-        } else {
-            question++;
-            nextQ()
-        }
-    }
-
-    function nextQ() {
-        if (question < q.length) {
-            questionDisplay.textContent = q[question];
-        } else {
-            questionDisplay.textContent = "Your total score was on this quiz was " + correctAns + "/" + q.length;
-            score.textContent = "Score: ";
-        }
-    }
-} 
-
-*/
+startBtn.addEventListener("click", startGame);
