@@ -1,6 +1,5 @@
 //fix bug where is num * 0 = 0 (which is correct) is flagged as false
 //make a difficulty eg easy (randomises nums till a certain num, bigger time frame to complete mental math have only add + sub) etc
-//make timer for game
 //maybe improve gui + add html page of game info or some small add box
 //add jest tests maybe
 
@@ -8,9 +7,13 @@ var lives = 3;
 var score = 0;
 var correctAnswer; 
 var isCorrectAnswer; 
+let time = 10; // 5 sec countdown
+let questionTimer; // holds interval for the question timer
 
 const scoreLabel = document.getElementById("show-score");
 const livesLabel = document.getElementById("lives-score");
+const timerLabel = document.getElementById("timer");
+const rulesLabel = document.getElementById("rules");
 const questionContainer = document.getElementById("question-con");
 
 const startBtn = document.getElementById("sBtn");
@@ -20,7 +23,24 @@ const falseBtn = document.getElementById("fBtn");
 correctBtn.addEventListener("click", function() { questionValidator(true); });
 falseBtn.addEventListener("click", function() { questionValidator(false); });
 
+function updateTimer(){
+    const seconds = time < 10 ? '0' + time : time;
+    timerLabel.innerHTML = `Timer: 00:${seconds}`;
+    time--;
+
+    if(time < 0){
+        lives--;
+        if (lives <= 0) {
+            endGame();
+        } else {
+            updateScoreLives();
+            questionCreator();
+        }
+    }
+}
+
 function questionValidator(answer) {
+    clearInterval(questionTimer); // stops current timer
     if (answer === isCorrectAnswer) {
         score++;
     } else {
@@ -38,14 +58,17 @@ function questionValidator(answer) {
 function startGame() {
     correctBtn.disabled = false;
     falseBtn.disabled = false;
+    questionContainer.style.fontSize = '4rem';
     lives = 3;
     score = 0;
     updateScoreLives();
-    questionCreator();
+    questionCreator(); // generate question and start timer
 }
 
-//generates 2 random nums + random arithmetic op, also randomises if the sum is true or false
 function questionCreator() {
+    clearInterval(questionTimer); // stop old timers
+    time = 10; // resets time to 5 sec for every q
+    
     var ranNum1 = getRandomInt(50);
     var ranNum2 = getRandomInt(50);
     var symbolGenerator = getRandomInt(4) + 1;
@@ -88,6 +111,9 @@ function questionCreator() {
     }
 
     questionContainer.innerHTML = equation + " = " + outcome;
+
+    // starts timer for the new q
+    questionTimer = setInterval(updateTimer, 1000);
 }
 
 function updateScoreLives() {
@@ -96,15 +122,38 @@ function updateScoreLives() {
 }
 
 function endGame() {
+    clearInterval(questionTimer); // stops timer
+    timerLabel.textContent = `Timer: 00:00`
     livesLabel.textContent = `Lives: ${lives}`;
-    questionContainer.innerHTML = "You managed to get: " + score + " math questions right!";
+
+    questionContainer.innerHTML = "You got: " + score + " questions correct";
     correctBtn.disabled = true;
     falseBtn.disabled = true;
 }
 
-//gets random number created for math question
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+function info(){
+    questionContainer.style.fontSize = '1rem';
+    questionContainer.innerHTML = 
+    `
+    A random math equation will generate either being RIGHT or WRONG, if you believe the equation is correct press "Correct", else press "False".
+    <br> 
+    <br>
+    If you deduce the answer correctly before the timer runs out. You will get a point for being correct, if not a life will be deducted.
+    <br> 
+    <br>
+    If the timer hits 00:00 you will lose a life & if you run out of lives the game ends.
+    <br> 
+    <br> 
+    Your goal is to get as many questions correct before you run out of lives. 
+    <br> 
+    <br> 
+    Good luck and have Fun!
+    `;
+}
+
+rulesLabel.addEventListener('mouseover', info);
 startBtn.addEventListener("click", startGame);
