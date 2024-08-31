@@ -26,6 +26,9 @@
     max-width: 800px;
     margin-bottom: 20px;
 }
+#rules{
+    background-color: rgb(255, 250, 195);
+}
 .top-labels {
     width: auto;
     height: auto;
@@ -53,14 +56,15 @@
     background-color: rgb(176, 209, 237);
     width: 100%;
     height: 300px;
-    font-size: 3rem;
+    font-size: 4rem;
+    font-style: bold;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* buttons container & buttons */
+/* button container & buttons */
 .button-con {
     display: flex;
     justify-content: space-around;
@@ -89,7 +93,6 @@
 /* hover effects */
 .bottom-btns:hover {
     transform: scale(1.05);
-    /* Slightly enlarges the button */
 }
 #sBtn:hover {
     background-color: rgb(255, 230, 120);
