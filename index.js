@@ -1,13 +1,11 @@
-//fix bug where is num * 0 = 0 (which is correct) is flagged as false
 //make a difficulty eg easy (randomises nums till a certain num, bigger time frame to complete mental math have only add + sub) etc
-//maybe improve gui + add html page of game info or some small add box
-//add jest tests maybe
+//add jest tests
 
 var lives = 3;
 var score = 0;
 var correctAnswer; 
 var isCorrectAnswer; 
-let time = 10; // 5 sec countdown
+let time = 10; // 10 sec countdown
 let questionTimer; // holds interval for the question timer
 
 const scoreLabel = document.getElementById("show-score");
@@ -69,9 +67,9 @@ function questionCreator() {
     clearInterval(questionTimer); // stop old timers
     time = 10; // resets time to 5 sec for every q
     
-    var ranNum1 = getRandomInt(50);
-    var ranNum2 = getRandomInt(50);
-    var symbolGenerator = getRandomInt(4) + 1;
+    var ranNum1 = getRandomInt(20);
+    var ranNum2 = getRandomInt(20);
+    var symbolGenerator = getRandomInt(1) + 1;
     var correctFalseOdds = getRandomInt(2);
     var falseOffset = getRandomInt(10) + 1;
 
@@ -79,7 +77,7 @@ function questionCreator() {
     var outcome;
 
     switch (symbolGenerator) {
-        case 1:
+        case 3:
             equation = `${ranNum1} + ${ranNum2}`;
             outcome = ranNum1 + ranNum2;
             break;
@@ -87,14 +85,14 @@ function questionCreator() {
             equation = `${ranNum1} - ${ranNum2}`;
             outcome = ranNum1 - ranNum2;
             break;
-        case 3:
+        case 1:
             equation = `${ranNum1} x ${ranNum2}`;
             outcome = ranNum1 * ranNum2;
             break;
         case 4:
             while (ranNum2 === 0 || ranNum1 % ranNum2 !== 0 || ranNum1 < ranNum2) {
-                ranNum1 = getRandomInt(50);
-                ranNum2 = getRandomInt(50);
+                ranNum1 = getRandomInt(20);
+                ranNum2 = getRandomInt(20);
             }
             equation = `${ranNum1} ÷ ${ranNum2}`;
             outcome = ranNum1 / ranNum2;
@@ -155,5 +153,4 @@ function info(){
     `;
 }
 
-rulesLabel.addEventListener('mouseover', info);
 startBtn.addEventListener("click", startGame);
