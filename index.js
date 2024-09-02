@@ -65,7 +65,7 @@ function startGame() {
 
 function questionCreator() {
     clearInterval(questionTimer); // stop old timers
-    time = 10; // resets time to 5 sec for every q
+    time = 10; // resets time to 10 sec for every q
     
     var ranNum1 = getRandomInt(20);
     var ranNum2 = getRandomInt(20);
