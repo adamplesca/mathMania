@@ -27,7 +27,6 @@ With **"Math Mania,"** I aimed to spice things up. This new version introduces r
 ## Key Improvements
 
 - **Dynamic Questions:** Unlike the fixed and unrandomized questions of the old version, "Math Mania" features **random math problems**.
-<br>
  This allows for **infinite playability** and keeps the experience fresh each time.
 - **Timed Challenges:** There’s now a **countdown timer** to keep you on your toes and make each second count.
 - **Lives System:** Incorrect answers or running out of time will **cost you lives**, increasing the game’s difficulty and urgency.
