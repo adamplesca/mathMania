@@ -40,8 +40,6 @@ With **"Math Mania,"** I aimed to spice things up. This new version introduces r
 
 When you run out of lives, the game wraps up with your final score.
 
-I hope you enjoy the new features and challenges in **"Math Mania."** It’s been a fun journey from the simplicity of "True or False" to a more dynamic and engaging game experience!
-
 ---
 
 *Thanks for checking out my game! Feel free to drop feedback or suggestions.*
