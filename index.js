@@ -152,5 +152,3 @@ function info(){
     Good luck and have Fun!
     `;
 }
-
-startBtn.addEventListener("click", startGame);
