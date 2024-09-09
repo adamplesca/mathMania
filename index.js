@@ -1,5 +1,5 @@
 //make a difficulty eg easy (randomises nums till a certain num, bigger time frame to complete mental math have only add + sub) etc
-//add jest tests
+//have diff mode where its a countdown but still with the lives
 
 var lives = 3;
 var score = 0;

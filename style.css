@@ -80,10 +80,10 @@
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-#dBtn{
+#slBtn{
     background-color: rgb(255, 187, 173);
 }
-#sBtn {
+#suBtn {
     background-color: rgb(255, 248, 175);
 }
 #cBtn {
