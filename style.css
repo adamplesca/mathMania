@@ -65,6 +65,13 @@
 }
 
 /* button container & buttons */
+#level {
+    font-size: 1.1rem;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    height: 20%;
+}
 .button-con {
     display: flex;
     justify-content: space-around;
@@ -74,7 +81,7 @@
     height: 50px;
     padding: 10px;
     margin: 5px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: none;
     cursor: pointer;
     border-radius: 5px;
