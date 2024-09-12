@@ -18,8 +18,12 @@
         <div class="game-con">
             <div id="question-con">Press "Start Game" to begin!</div>
             <div class="button-con">
-               <button class="bottom-btns" id="slBtn" onclick="">Start Game: Limited time</button>
-                <button class="bottom-btns" id="suBtn" onclick="startGame()">Start Game: Unlimited time</button>
+                <select id="level">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <button class="bottom-btns" id="suBtn" onclick="startGame()">Start Game</button>
                 <button class="bottom-btns" id="cBtn">Correct</button>
                 <button class="bottom-btns" id="fBtn">False</button>
             </div>
