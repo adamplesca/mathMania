@@ -1,5 +1,9 @@
-//make a difficulty eg easy (randomises nums till a certain num, bigger time frame to complete mental math have only add + sub) etc
-//have diff mode where its a countdown but still with the lives
+//easy, 20 seconds per q, only adding & subtracting, max number range is 200
+//medium, 10 seconds per q, all 4, max num range is 25
+//hard, 5 seconds per q, all 4, max num range is 25
+
+//make into a chrome extension, thats online
+//maybe add leaderboard and so users can save their topscores if they like
 
 var lives = 3;
 var score = 0;
@@ -69,7 +73,7 @@ function questionCreator() {
     
     var ranNum1 = getRandomInt(20);
     var ranNum2 = getRandomInt(20);
-    var symbolGenerator = getRandomInt(1) + 1;
+    var symbolGenerator = getRandomInt(4) + 1;
     var correctFalseOdds = getRandomInt(2);
     var falseOffset = getRandomInt(10) + 1;
 
@@ -77,7 +81,7 @@ function questionCreator() {
     var outcome;
 
     switch (symbolGenerator) {
-        case 3:
+        case 1:
             equation = `${ranNum1} + ${ranNum2}`;
             outcome = ranNum1 + ranNum2;
             break;
@@ -85,7 +89,7 @@ function questionCreator() {
             equation = `${ranNum1} - ${ranNum2}`;
             outcome = ranNum1 - ranNum2;
             break;
-        case 1:
+        case 3:
             equation = `${ranNum1} x ${ranNum2}`;
             outcome = ranNum1 * ranNum2;
             break;
