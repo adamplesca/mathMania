@@ -1,15 +1,12 @@
-//easy, 20 seconds per q, only adding & subtracting, max number range is 200
-//medium, 10 seconds per q, all 4, max num range is 25
-//hard, 5 seconds per q, all 4, max num range is 25
-
-//make into a chrome extension, thats online
+//make into a chrome extension, thats online 
 //maybe add leaderboard and so users can save their topscores if they like
 
 var lives = 3;
 var score = 0;
+var levelChoosen; //level
 var correctAnswer; 
 var isCorrectAnswer; 
-let time = 10; // 10 sec countdown
+let time; // countdown for game
 let questionTimer; // holds interval for the question timer
 
 const scoreLabel = document.getElementById("show-score");
@@ -17,6 +14,26 @@ const livesLabel = document.getElementById("lives-score");
 const timerLabel = document.getElementById("timer");
 const rulesLabel = document.getElementById("rules");
 const questionContainer = document.getElementById("question-con");
+
+document.getElementById("level").addEventListener("change", difficultyLevel);
+
+function difficultyLevel(){
+    const level = document.getElementById("level").value; // Get the selected value
+    switch(level){
+        case "easy" : 
+            levelChoosen = "easy";
+            break;
+        case "medium" : 
+            levelChoosen = "medium";
+            break;
+        case "hard" : 
+            levelChoosen = "hard";
+            break;
+        default : 
+            console.log("Level chooser not working");
+            break;
+    }   
+}
 
 const startBtn = document.getElementById("sBtn");
 const correctBtn = document.getElementById("cBtn");
@@ -63,17 +80,42 @@ function startGame() {
     questionContainer.style.fontSize = '4rem';
     lives = 3;
     score = 0;
+    difficultyLevel(); //gets diff level player chose
     updateScoreLives();
     questionCreator(); // generate question and start timer
+    level.disabled = true;
 }
 
 function questionCreator() {
     clearInterval(questionTimer); // stop old timers
-    time = 10; // resets time to 10 sec for every q
+
+    var ranNum1;
+    var ranNum2;
+    var symbolGenerator;
+
+    switch(levelChoosen){
+        case "easy" : 
+            time = 20;
+            ranNum1 = getRandomInt(200) + 1;
+            ranNum2 = getRandomInt(200) + 1;
+            symbolGenerator = getRandomInt(2) + 1;
+            break;
+        case "medium" : 
+            time = 10;
+            ranNum1 = getRandomInt(20) + 1;
+            ranNum2 = getRandomInt(20) + 1;
+            symbolGenerator = getRandomInt(3) + 1;
+            break;
+        case "hard" : 
+            time = 5;
+            ranNum1 = getRandomInt(25) + 1;
+            ranNum2 = getRandomInt(25) + 1;
+            symbolGenerator = getRandomInt(4) + 1;
+            break;
+        default : console.log("THIS SHIT NOT WORKING");
+            break;
+    }
     
-    var ranNum1 = getRandomInt(20);
-    var ranNum2 = getRandomInt(20);
-    var symbolGenerator = getRandomInt(4) + 1;
     var correctFalseOdds = getRandomInt(2);
     var falseOffset = getRandomInt(10) + 1;
 
@@ -115,7 +157,7 @@ function questionCreator() {
     questionContainer.innerHTML = equation + " = " + outcome;
 
     // starts timer for the new q
-    questionTimer = setInterval(updateTimer, 1000);
+    questionTimer = setInterval(updateTimer, 1000); //clock speed
 }
 
 function updateScoreLives() {
@@ -131,6 +173,7 @@ function endGame() {
     questionContainer.innerHTML = "You got: " + score + " questions correct";
     correctBtn.disabled = true;
     falseBtn.disabled = true;
+    level.disabled = false;
 }
 
 function getRandomInt(max) {
