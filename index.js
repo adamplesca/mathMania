@@ -1,5 +1,8 @@
 //make into a chrome extension, thats online 
-//maybe add leaderboard and so users can save their topscores if they like
+//maybe add leaderboard and so users can save their topscores if they like 
+    //add second timer for total time played liek speedrunning scroes etc, track difficulty and and user name ( prompt user after game if they want to save it)
+//disabled startbtn when game is playing so you cant just restart and reenambled it 
+//config info for user in visual way
 
 var lives = 3;
 var score = 0;
@@ -18,7 +21,7 @@ const questionContainer = document.getElementById("question-con");
 document.getElementById("level").addEventListener("change", difficultyLevel);
 
 function difficultyLevel(){
-    const level = document.getElementById("level").value; // Get the selected value
+    const level = document.getElementById("level").value; // get the selected value
     switch(level){
         case "easy" : 
             levelChoosen = "easy";
@@ -180,22 +183,33 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function info(){
-    questionContainer.style.fontSize = '1rem';
+//info for user
+function showInfo() {
+    questionContainer.style.fontSize = '0.5rem';
     questionContainer.innerHTML = 
     `
-    A random math equation will generate either being RIGHT or WRONG, if you believe the equation is correct press "Correct", else press "False".
-    <br> 
-    <br>
-    If you deduce the answer correctly before the timer runs out. You will get a point for being correct, if not a life will be deducted.
-    <br> 
-    <br>
-    If the timer hits 00:00 you will lose a life & if you run out of lives the game ends.
-    <br> 
-    <br> 
-    Your goal is to get as many questions correct before you run out of lives. 
-    <br> 
-    <br> 
-    Good luck and have Fun!
+    Welcome to the Math Challenge Game!
+    <br><br>
+    In this game, you will be presented with a random math equation, which could be correct or incorrect. Your task is to decide whether the equation is right or wrong.
+    <br><br>
+    Press "Correct" if you think the equation is right, or "False" if it's wrong.
+    <br><br>
+    For every correct answer, you gain a point. But if you're wrong or if the timer runs out, you lose a life. The game ends when you run out of lives.
+    <br><br>
+    <strong>Difficulty Levels:</strong>
+    <ul>
+        <li><strong>Easy:</strong> More time and larger numbers.</li>
+        <li><strong>Medium:</strong> Less time with smaller numbers and more complex equations.</li>
+        <li><strong>Hard:</strong> Minimal time with tricky equations and tougher challenges.</li>
+    </ul>
+    Try to get the highest score possible!
+    <br><br>
+    Good luck and have fun!
     `;
 }
+function hideInfo() {
+    questionContainer.style.fontSize = '4rem';
+    questionContainer.innerHTML = 'Press "Start Game" to play!'; 
+}
+rulesLabel.addEventListener("mouseenter", showInfo); 
+rulesLabel.addEventListener("mouseleave", hideInfo); 
