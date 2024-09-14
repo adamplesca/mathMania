@@ -2,7 +2,7 @@
 //maybe add leaderboard and so users can save their topscores if they like 
     //add second timer for total time played liek speedrunning scroes etc, track difficulty and and user name ( prompt user after game if they want to save it)
 //disabled startbtn when game is playing so you cant just restart and reenambled it 
-//config info for user in visual way
+//config info for user in visual way better since it shjoit
 
 var lives = 3;
 var score = 0;
@@ -185,28 +185,27 @@ function getRandomInt(max) {
 
 //info for user
 function showInfo() {
-    questionContainer.style.fontSize = '0.5rem';
-    questionContainer.innerHTML = 
-    `
-    Welcome to the Math Challenge Game!
-    <br><br>
-    In this game, you will be presented with a random math equation, which could be correct or incorrect. Your task is to decide whether the equation is right or wrong.
-    <br><br>
-    Press "Correct" if you think the equation is right, or "False" if it's wrong.
-    <br><br>
-    For every correct answer, you gain a point. But if you're wrong or if the timer runs out, you lose a life. The game ends when you run out of lives.
-    <br><br>
-    <strong>Difficulty Levels:</strong>
-    <ul>
-        <li><strong>Easy:</strong> More time and larger numbers.</li>
-        <li><strong>Medium:</strong> Less time with smaller numbers and more complex equations.</li>
-        <li><strong>Hard:</strong> Minimal time with tricky equations and tougher challenges.</li>
-    </ul>
-    Try to get the highest score possible!
-    <br><br>
-    Good luck and have fun!
+    questionContainer.style.fontSize = '1rem';
+    questionContainer.innerHTML = `
+    <div style="display: flex; flex-direction: column;">
+        Random Maths equations will show on screen. Decide if they are correct or incorrect. Press "Correct" if the equation is right, Press "False" if it's wrong.
+        <br><br> 
+        <strong>Game Rules:</strong>
+        <p>For each correct answer, you gain a point.</p>
+        <p>If you are wrong or time runs out, you lose a life.</p>
+        <p>The game ends when you lose all your lives.</p>
+        <br>
+        <strong>Difficulty Levels:</strong>
+        <p>Easy: 20s per question, [+ , -]</p>
+        <p>Medi: 10s per question, [+ , - , x]</p>
+        <p>Hard: 5s per question, [+ , - , x , ÷] </p>
+        <br>
+        <p>Try to get the highest score possible. Have fun!</p>
+    </div>
     `;
 }
+
+
 function hideInfo() {
     questionContainer.style.fontSize = '4rem';
     questionContainer.innerHTML = 'Press "Start Game" to play!'; 
