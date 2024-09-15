@@ -110,14 +110,14 @@ function questionCreator() {
             break;
         case "medium" : 
             time = 10;
-            ranNum1 = getRandomInt(20) + 1;
-            ranNum2 = getRandomInt(20) + 1;
+            ranNum1 = getRandomInt(25) + 1;
+            ranNum2 = getRandomInt(25) + 1;
             symbolGenerator = getRandomInt(3) + 1;
             break;
         case "hard" : 
             time = 5;
-            ranNum1 = getRandomInt(20) + 1;
-            ranNum2 = getRandomInt(20) + 1;
+            ranNum1 = getRandomInt(30) + 1;
+            ranNum2 = getRandomInt(30) + 1;
             symbolGenerator = getRandomInt(4) + 1;
             break;
         default : console.log("THIS SHIT NOT WORKING");
@@ -187,7 +187,6 @@ function endGame() {
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-
 
 //game info for user
 function showInfo() {
