@@ -1,6 +1,4 @@
-# From True or False to Math Mania: My Game Evolution Journey
-
-## A Quick Look Back
+# Math Mania: My Game Evolution Journey
 
 ### The Old Version: True or False
 
