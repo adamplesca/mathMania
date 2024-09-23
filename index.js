@@ -3,6 +3,7 @@
     //add second timer for total time played liek speedrunning scroes etc, track difficulty and and user name ( prompt user after game if they want to save it)
 //disabled startbtn when game is playing so you cant just restart and reenambled it 
 
+
 var lives;
 var score;
 var levelChoosen; //level
@@ -10,7 +11,13 @@ var levelChoosen; //level
 var correctAnswer; 
 var isCorrectAnswer; 
 
-let time; // countdown for game
+let countDownTime; // countdown for game
+
+var stopwatchTimer = 0;
+var secondTimeHolder = 0; // Starts from 0 seconds
+var minTimeHolder = 0;
+var hourTimeHolder = 0;
+
 let questionTimer; // holds interval for the question timer
 
 const scoreLabel = document.getElementById("show-score");
@@ -38,6 +45,7 @@ function startGame() {
     questionContainer.style.fontSize = '4rem';
     lives = 3;
     score = 0;
+    totalTimeTracker(); //starts total timer
     difficultyLevel(); //gets diff level player chose
     updateScoreLives();
     questionCreator(); // generate question and start timer
@@ -63,11 +71,11 @@ function difficultyLevel(){
 }
 
 function updateTimer(){
-    const seconds = time < 10 ? '0' + time : time;
-    timerLabel.innerHTML = `Timer: 00:${seconds}`;
-    time--;
+    const countDownseconds = countDownTime < 10 ? '0' + countDownTime : countDownTime;
+    timerLabel.innerHTML = `Timer: 00:${countDownseconds}`;
+    countDownTime--;
 
-    if(time < 0){
+    if(countDownTime < 0){
         lives--;
         if (lives <= 0) {
             endGame();
@@ -77,6 +85,22 @@ function updateTimer(){
         }
     }
 }
+
+function totalTimeTracker(){
+    stopwatchTimer = setInterval(() => {
+        secondTimeHolder++;
+        if(secondTimeHolder == 60){
+            minTimeHolder++;
+            secondTimeHolder = 0;
+        }
+        if(minTimeHolder == 60){
+            hourTimeHolder++;
+            minTimeHolder = 0;
+        }
+    },  1000);
+    
+}
+
 
 function questionValidator(answer) {
     clearInterval(questionTimer); // stops current timer
@@ -103,19 +127,19 @@ function questionCreator() {
 
     switch(levelChoosen){
         case "easy" : 
-            time = 20;
+            countDownTime = 20;
             ranNum1 = getRandomInt(20) + 1;
             ranNum2 = getRandomInt(20) + 1;
             symbolGenerator = getRandomInt(2) + 1;
             break;
         case "medium" : 
-            time = 10;
+            countDownTime = 10;
             ranNum1 = getRandomInt(25) + 1;
             ranNum2 = getRandomInt(25) + 1;
             symbolGenerator = getRandomInt(3) + 1;
             break;
         case "hard" : 
-            time = 5;
+            countDownTime = 5;
             ranNum1 = getRandomInt(30) + 1;
             ranNum2 = getRandomInt(30) + 1;
             symbolGenerator = getRandomInt(4) + 1;
@@ -175,13 +199,17 @@ function updateScoreLives() {
 
 function endGame() {
     clearInterval(questionTimer); // stops timer
+    clearInterval(stopwatchTimer); //gets total time played
     timerLabel.textContent = `Timer: 00:00`
     livesLabel.textContent = `Lives: ${lives}`;
 
-    questionContainer.innerHTML = "You got: " + score + " questions correct";
+    questionContainer.innerHTML = `You got: ${score} questions correct in "${hourTimeHolder}hrs ${minTimeHolder}mins ${secondTimeHolder}s"`;
     correctBtn.disabled = true;
     falseBtn.disabled = true;
     level.disabled = false;
+    secondTimeHolder = 0;
+    minTimeHolder = 0;
+    hourTimeHolder = 0;
 }
 
 function getRandomInt(max) {
@@ -193,7 +221,7 @@ function showInfo() {
     questionContainer.style.fontSize = '1rem';
     questionContainer.innerHTML = `
     <div style="display: flex; flex-direction: column;">
-        Random Maths equations will show on screen. Decide if they are correct or incorrect. Press "Correct" if the equation is right, Press "False" if it's wrong.
+        Random Maths equations will show on screen. Decide if they are correct or incorrect. Press "Correct" if the equation is right, or "Incorrect" if not.
         <br><br> 
         <strong>GAME RULES:</strong>
         <p>For each correct answer, you gain a point.</p>
