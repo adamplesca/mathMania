@@ -1,8 +1,5 @@
-//make into a chrome extension, thats online 
-//maybe add leaderboard and so users can save their topscores if they like 
-    //add second timer for total time played liek speedrunning scroes etc, track difficulty and and user name ( prompt user after game if they want to save it)
-//disabled startbtn when game is playing so you cant just restart and reenambled it 
-
+//make functionn that displays text total time once game is complete
+//make harder digit offset so you can't guess based off last digit
 
 var lives;
 var score;
@@ -180,7 +177,7 @@ function questionCreator() {
     correctAnswer = outcome;
 
     if (correctFalseOdds === 0) {
-        outcome += falseOffset * (Math.random() < 0.5 ? 1 : -1);
+        outcome += falseOffset * Math.floor((Math.random() < 0.5 ? 1.5 : -1.5));
         isCorrectAnswer = false; // random generated equation is incorrect by small offset
     } else {
         isCorrectAnswer = true; // random generated equation is correct
