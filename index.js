@@ -124,19 +124,19 @@ function questionCreator() {
 
     switch(levelChoosen){
         case "easy" : 
-            countDownTime = 20;
+            countDownTime = 30;
             ranNum1 = getRandomInt(20) + 1;
             ranNum2 = getRandomInt(20) + 1;
             symbolGenerator = getRandomInt(2) + 1;
             break;
         case "medium" : 
-            countDownTime = 10;
+            countDownTime = 20;
             ranNum1 = getRandomInt(25) + 1;
             ranNum2 = getRandomInt(25) + 1;
             symbolGenerator = getRandomInt(3) + 1;
             break;
         case "hard" : 
-            countDownTime = 5;
+            countDownTime = 10;
             ranNum1 = getRandomInt(30) + 1;
             ranNum2 = getRandomInt(30) + 1;
             symbolGenerator = getRandomInt(4) + 1;
@@ -177,7 +177,7 @@ function questionCreator() {
     correctAnswer = outcome;
 
     if (correctFalseOdds === 0) {
-        outcome += falseOffset * Math.floor((Math.random() < 0.5 ? 1.5 : -1.5));
+        outcome += falseOffset * Math.floor((Math.random() < 0.5 ? 1.5 : -1.5)) + 1;
         isCorrectAnswer = false; // random generated equation is incorrect by small offset
     } else {
         isCorrectAnswer = true; // random generated equation is correct
