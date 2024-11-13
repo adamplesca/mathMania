@@ -226,9 +226,9 @@ function showInfo() {
         <p>The game ends when you lose all your lives.</p>
         <br>
         <strong>DIFFICULTY LEVELS:</strong>
-        <p>Easy: 20s per question, [+ , -]</p>
-        <p>Medi: 10s per question, [+ , - , x]</p>
-        <p>Hard: 5s per question, [+ , - , x , ÷] </p>
+        <p>Easy: 30s per question, [+ , -]</p>
+        <p>Medi: 20s per question, [+ , - , x]</p>
+        <p>Hard: 10s per question, [+ , - , x , ÷] </p>
         <br>
         <p>Try to get the highest score possible. Have fun!</p>
     </div>
